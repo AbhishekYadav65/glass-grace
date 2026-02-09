@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        handwritten: ["Caveat", "cursive"],
-        serif: ["Cormorant Garamond", "serif"],
+        handwritten: ["Kalam", "cursive"],
+        sans: ["Quicksand", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,24 +51,31 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        rose: {
-          DEFAULT: "hsl(var(--rose))",
-          light: "hsl(var(--rose-light))",
-          deep: "hsl(var(--rose-deep))",
+        blush: {
+          DEFAULT: "hsl(var(--blush))",
+          light: "hsl(var(--blush-light))",
+          deep: "hsl(var(--blush-deep))",
         },
-        parchment: {
-          DEFAULT: "hsl(var(--parchment))",
-          dark: "hsl(var(--parchment-dark))",
+        warmred: {
+          DEFAULT: "hsl(var(--warmred))",
+          glow: "hsl(var(--warmred-glow))",
         },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          glow: "hsl(var(--gold-glow))",
+        orange: {
+          DEFAULT: "hsl(var(--orange))",
+          glow: "hsl(var(--orange-glow))",
+        },
+        yellow: {
+          DEFAULT: "hsl(var(--yellow))",
+          glow: "hsl(var(--yellow-glow))",
+        },
+        midnight: {
+          DEFAULT: "hsl(var(--midnight))",
+          deep: "hsl(var(--midnight-deep))",
         },
         charcoal: {
           DEFAULT: "hsl(var(--charcoal))",
           warm: "hsl(var(--charcoal-warm))",
         },
-        ink: "hsl(var(--ink))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

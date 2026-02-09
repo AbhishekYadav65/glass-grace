@@ -3,19 +3,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import OpeningLetter from "@/components/valentine/OpeningLetter";
 import WhyYou from "@/components/valentine/WhyYou";
 import HowYouMakeMe from "@/components/valentine/HowYouMakeMe";
-import Moments from "@/components/valentine/Moments";
-import GentlePromise from "@/components/valentine/GentlePromise";
+import GentlemanPromise from "@/components/valentine/GentlemanPromise";
 import TheQuestion from "@/components/valentine/TheQuestion";
 import AfterYes from "@/components/valentine/AfterYes";
 
 const tabs = [
-  { id: 0, label: "A Letter" },
+  { id: 0, label: "Start" },
   { id: 1, label: "Why You" },
   { id: 2, label: "How I Feel" },
-  { id: 3, label: "Moments" },
-  { id: 4, label: "A Promise" },
-  { id: 5, label: "A Question" },
-  { id: 6, label: "♡" },
+  { id: 3, label: "My Promise" },
+  { id: 4, label: "A Question" },
+  { id: 5, label: "♡" },
 ];
 
 const Index = () => {
@@ -30,7 +28,7 @@ const Index = () => {
 
   const handleYes = () => {
     setAnswered(true);
-    setActiveTab(6);
+    setActiveTab(5);
   };
 
   const renderTab = () => {
@@ -38,17 +36,16 @@ const Index = () => {
       case 0: return <OpeningLetter onNext={handleStart} />;
       case 1: return <WhyYou />;
       case 2: return <HowYouMakeMe />;
-      case 3: return <Moments />;
-      case 4: return <GentlePromise />;
-      case 5: return <TheQuestion onYes={handleYes} />;
-      case 6: return <AfterYes />;
+      case 3: return <GentlemanPromise />;
+      case 4: return <TheQuestion onYes={handleYes} />;
+      case 5: return <AfterYes />;
       default: return <OpeningLetter onNext={handleStart} />;
     }
   };
 
   return (
     <div className="min-h-screen bg-background relative">
-      {/* Tab navigation - hidden on opening letter */}
+      {/* Tab navigation - hidden on opening */}
       <AnimatePresence>
         {showTabs && (
           <motion.nav
@@ -58,7 +55,7 @@ const Index = () => {
             className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center py-4 px-4"
           >
             <div className="glass-strong rounded-full px-3 py-2 flex items-center gap-1 flex-wrap justify-center">
-              {tabs.slice(1, answered ? 7 : 6).map((tab) => (
+              {tabs.slice(1, answered ? 6 : 5).map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}

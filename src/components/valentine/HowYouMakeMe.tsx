@@ -1,54 +1,61 @@
 import { motion } from "framer-motion";
+import AmbientBackground from "./AmbientBackground";
 import FloatingParticles from "./FloatingParticles";
 
 const lines = [
-  "With you,",
-  "I don't rush my words.",
-  "",
-  "I don't hide softness.",
-  "",
-  "I feel allowed to be real.",
+  { text: "With you,", pause: false },
+  { text: "I don't feel pressure.", pause: true },
+  { text: "I don't feel like I have to be anything else.", pause: true },
+  { text: "I feel calm.", pause: false },
+  { text: "I feel safe.", pause: false },
+  { text: "I feel real.", pause: false },
 ];
 
 const HowYouMakeMe = () => {
+  let cumulativeDelay = 0.5;
+
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden"
-      style={{
-        background: "linear-gradient(180deg, hsl(30, 30%, 95%), hsl(30, 25%, 88%))",
-      }}
-    >
-      <FloatingParticles color="warm" count={12} />
-      
-      <div className="relative z-10 max-w-2xl text-center space-y-2">
+    <div className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
+      <AmbientBackground variant="warm" />
+      <FloatingParticles color="rose" count={15} />
+
+      <div className="relative z-10 max-w-2xl text-center space-y-3">
         {lines.map((line, i) => {
-          if (line === "") {
-            return <div key={i} className="h-6" />;
-          }
+          const delay = cumulativeDelay;
+          cumulativeDelay += line.pause ? 1.8 : 1.2;
+
           return (
-            <motion.p
-              key={i}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1.5,
-                delay: 0.5 + i * 0.8,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-              className="handwritten text-2xl md:text-4xl text-foreground leading-relaxed"
-            >
-              <motion.span
-                animate={{ y: [0, -3, 0] }}
+            <motion.div key={i}>
+              <motion.p
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 5,
-                  delay: i * 0.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
+                  duration: 1.5,
+                  delay,
+                  ease: [0.25, 0.1, 0.25, 1],
                 }}
-                className="inline-block"
+                className="handwritten text-2xl md:text-4xl leading-relaxed"
+                style={{
+                  color: i >= 3 
+                    ? `hsl(340, ${65 + (i - 3) * 5}%, ${70 + (i - 3) * 3}%)`
+                    : "hsl(0, 0%, 92%)",
+                }}
               >
-                {line}
-              </motion.span>
-            </motion.p>
+                <motion.span
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{
+                    duration: 6,
+                    delay: i * 0.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="inline-block"
+                >
+                  {line.text}
+                </motion.span>
+              </motion.p>
+              {line.pause && <div className="h-4" />}
+            </motion.div>
           );
         })}
       </div>

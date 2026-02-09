@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import AmbientBackground from "./AmbientBackground";
 
 interface TheQuestionProps {
   onYes: () => void;
@@ -6,8 +7,23 @@ interface TheQuestionProps {
 
 const TheQuestion = ({ onYes }: TheQuestionProps) => {
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 paper-grain overflow-hidden">
-      {/* Stillness, then text */}
+    <div className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
+      <AmbientBackground variant="cool" />
+
+      {/* Soft color movement */}
+      <motion.div
+        className="absolute w-[600px] h-[600px] rounded-full"
+        style={{
+          background: "radial-gradient(circle, hsla(340, 65%, 65%, 0.15), transparent 70%)",
+          filter: "blur(80px)",
+        }}
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       <div className="relative z-10 max-w-2xl text-center space-y-6">
         <motion.p
           initial={{ opacity: 0 }}
@@ -15,7 +31,7 @@ const TheQuestion = ({ onYes }: TheQuestionProps) => {
           transition={{ duration: 2, delay: 1.5 }}
           className="handwritten text-xl md:text-3xl text-muted-foreground leading-relaxed"
         >
-          So this isn't a grand gesture…
+          So this isn't a performance.
         </motion.p>
 
         <motion.p
@@ -24,7 +40,7 @@ const TheQuestion = ({ onYes }: TheQuestionProps) => {
           transition={{ duration: 2, delay: 4 }}
           className="handwritten text-xl md:text-3xl text-muted-foreground leading-relaxed"
         >
-          It's just something honest.
+          It's just honesty.
         </motion.p>
 
         <motion.div
@@ -33,18 +49,19 @@ const TheQuestion = ({ onYes }: TheQuestionProps) => {
           transition={{ duration: 2, delay: 7 }}
           className="pt-8"
         >
-          <p className="handwritten text-3xl md:text-5xl text-rose leading-relaxed">
+          <p className="handwritten text-3xl md:text-5xl text-blush-light leading-relaxed">
             Will you be my Valentine?
           </p>
 
-          {/* Ink underline */}
+          {/* Gradient underline */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 2, delay: 8.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="mx-auto mt-4 w-64 h-[2px] origin-left"
+            className="mx-auto mt-4 w-64 h-[2px] origin-center"
             style={{
-              background: "linear-gradient(90deg, transparent, hsl(348, 35%, 48%), transparent)",
+              background: "linear-gradient(90deg, transparent, hsl(340, 65%, 65%), hsl(25, 80%, 55%), transparent)",
+              boxShadow: "0 0 15px hsla(340, 65%, 65%, 0.4)",
             }}
           />
         </motion.div>
@@ -59,9 +76,10 @@ const TheQuestion = ({ onYes }: TheQuestionProps) => {
             onClick={onYes}
             className="glass-strong rounded-full px-10 py-4 handwritten text-xl heartbeat cursor-pointer"
             style={{
-              color: "hsl(38, 55%, 55%)",
-              boxShadow: "0 0 30px hsla(38, 55%, 65%, 0.2)",
-              border: "1px solid hsla(38, 55%, 65%, 0.3)",
+              background: "linear-gradient(135deg, hsla(340, 65%, 65%, 0.25), hsla(45, 70%, 60%, 0.2))",
+              color: "hsl(45, 70%, 70%)",
+              boxShadow: "0 0 30px hsla(340, 65%, 65%, 0.2), 0 0 60px hsla(45, 70%, 60%, 0.1)",
+              border: "1px solid hsla(45, 70%, 60%, 0.3)",
             }}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.6 }}
@@ -73,14 +91,15 @@ const TheQuestion = ({ onYes }: TheQuestionProps) => {
             onClick={onYes}
             className="glass-strong rounded-full px-10 py-4 handwritten text-xl heartbeat cursor-pointer"
             style={{
-              color: "hsl(348, 35%, 48%)",
-              boxShadow: "0 0 30px hsla(348, 35%, 48%, 0.15)",
-              border: "1px solid hsla(348, 35%, 48%, 0.25)",
+              background: "linear-gradient(135deg, hsla(220, 45%, 45%, 0.25), hsla(25, 80%, 55%, 0.2))",
+              color: "hsl(25, 85%, 70%)",
+              boxShadow: "0 0 30px hsla(220, 45%, 45%, 0.15), 0 0 60px hsla(25, 80%, 55%, 0.1)",
+              border: "1px solid hsla(25, 80%, 55%, 0.3)",
             }}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.6 }}
           >
-            I'd love that
+            I'd love to
           </motion.button>
         </motion.div>
       </div>
