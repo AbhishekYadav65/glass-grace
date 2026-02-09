@@ -8,6 +8,8 @@ interface Particle {
   speedY: number;
   opacity: number;
   hue: number;
+  saturation: number;
+  lightness: number;
 }
 
 interface FloatingParticlesProps {
@@ -36,20 +38,22 @@ const FloatingParticles = ({ color = "rose", count = 30, className = "" }: Float
     window.addEventListener("resize", resize);
 
     const colorMap = {
-      rose: { h: 348, s: 35, l: 60 },
-      gold: { h: 38, s: 55, l: 65 },
-      warm: { h: 30, s: 30, l: 80 },
+      rose: { h: 340, s: 65, l: 70 },
+      gold: { h: 45, s: 70, l: 65 },
+      warm: { h: 25, s: 75, l: 60 },
     };
     const c = colorMap[color];
 
     particlesRef.current = Array.from({ length: count }, () => ({
       x: Math.random() * canvas.offsetWidth,
       y: Math.random() * canvas.offsetHeight,
-      size: Math.random() * 3 + 1,
-      speedX: (Math.random() - 0.5) * 0.3,
-      speedY: -Math.random() * 0.4 - 0.1,
-      opacity: Math.random() * 0.4 + 0.1,
-      hue: c.h + (Math.random() - 0.5) * 10,
+      size: Math.random() * 2.5 + 0.5,
+      speedX: (Math.random() - 0.5) * 0.25,
+      speedY: -Math.random() * 0.35 - 0.1,
+      opacity: Math.random() * 0.35 + 0.1,
+      hue: c.h + (Math.random() - 0.5) * 15,
+      saturation: c.s + (Math.random() - 0.5) * 10,
+      lightness: c.l + (Math.random() - 0.5) * 10,
     }));
 
     const animate = () => {
@@ -57,8 +61,8 @@ const FloatingParticles = ({ color = "rose", count = 30, className = "" }: Float
       particlesRef.current.forEach((p) => {
         p.x += p.speedX;
         p.y += p.speedY;
-        p.opacity += (Math.random() - 0.5) * 0.01;
-        p.opacity = Math.max(0.05, Math.min(0.5, p.opacity));
+        p.opacity += (Math.random() - 0.5) * 0.008;
+        p.opacity = Math.max(0.05, Math.min(0.45, p.opacity));
 
         if (p.y < -10) p.y = canvas.offsetHeight + 10;
         if (p.x < -10) p.x = canvas.offsetWidth + 10;
@@ -66,7 +70,7 @@ const FloatingParticles = ({ color = "rose", count = 30, className = "" }: Float
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${p.hue}, ${c.s}%, ${c.l}%, ${p.opacity})`;
+        ctx.fillStyle = `hsla(${p.hue}, ${p.saturation}%, ${p.lightness}%, ${p.opacity})`;
         ctx.fill();
       });
       animRef.current = requestAnimationFrame(animate);
