@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import AmbientBackground from "./AmbientBackground";
+import FloatingHearts from "./FloatingHearts";
 
 interface TheQuestionProps {
   onYes: () => void;
@@ -8,13 +9,14 @@ interface TheQuestionProps {
 const TheQuestion = ({ onYes }: TheQuestionProps) => {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
-      <AmbientBackground variant="cool" />
+      <AmbientBackground variant="warm" />
+      <FloatingHearts count={15} />
 
-      {/* Soft color movement */}
+      {/* Soft valentine glow */}
       <motion.div
         className="absolute w-[600px] h-[600px] rounded-full"
         style={{
-          background: "radial-gradient(circle, hsla(340, 65%, 65%, 0.15), transparent 70%)",
+          background: "radial-gradient(circle, hsla(340, 65%, 65%, 0.2), hsla(5, 70%, 55%, 0.1), transparent 70%)",
           filter: "blur(80px)",
         }}
         animate={{
@@ -31,36 +33,26 @@ const TheQuestion = ({ onYes }: TheQuestionProps) => {
           transition={{ duration: 2, delay: 1.5 }}
           className="handwritten text-xl md:text-3xl text-muted-foreground leading-relaxed"
         >
-          So this isn't a performance.
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2, delay: 4 }}
-          className="handwritten text-xl md:text-3xl text-muted-foreground leading-relaxed"
-        >
-          It's just honesty.
+          So here's my Valentine's question…
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2, delay: 7 }}
+          transition={{ duration: 2, delay: 4 }}
           className="pt-8"
         >
           <p className="handwritten text-3xl md:text-5xl text-blush-light leading-relaxed">
-            Will you be my Valentine?
+            Will you be my Valentine? 💖
           </p>
 
-          {/* Gradient underline */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 2, delay: 8.5, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 2, delay: 5.5, ease: [0.25, 0.1, 0.25, 1] }}
             className="mx-auto mt-4 w-64 h-[2px] origin-center"
             style={{
-              background: "linear-gradient(90deg, transparent, hsl(340, 65%, 65%), hsl(25, 80%, 55%), transparent)",
+              background: "linear-gradient(90deg, transparent, hsl(340, 65%, 65%), hsl(5, 70%, 55%), transparent)",
               boxShadow: "0 0 15px hsla(340, 65%, 65%, 0.4)",
             }}
           />
@@ -69,37 +61,37 @@ const TheQuestion = ({ onYes }: TheQuestionProps) => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 10 }}
+          transition={{ duration: 1.5, delay: 7 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
         >
           <motion.button
             onClick={onYes}
             className="glass-strong rounded-full px-10 py-4 handwritten text-xl heartbeat cursor-pointer"
             style={{
-              background: "linear-gradient(135deg, hsla(340, 65%, 65%, 0.25), hsla(45, 70%, 60%, 0.2))",
-              color: "hsl(45, 70%, 70%)",
-              boxShadow: "0 0 30px hsla(340, 65%, 65%, 0.2), 0 0 60px hsla(45, 70%, 60%, 0.1)",
-              border: "1px solid hsla(45, 70%, 60%, 0.3)",
+              background: "linear-gradient(135deg, hsla(340, 65%, 65%, 0.3), hsla(45, 70%, 60%, 0.2))",
+              color: "hsl(340, 75%, 80%)",
+              boxShadow: "0 0 30px hsla(340, 65%, 65%, 0.25), 0 0 60px hsla(45, 70%, 60%, 0.1)",
+              border: "1px solid hsla(340, 65%, 65%, 0.35)",
             }}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.6 }}
           >
-            Yes
+            Yes 💖
           </motion.button>
 
           <motion.button
             onClick={onYes}
             className="glass-strong rounded-full px-10 py-4 handwritten text-xl heartbeat cursor-pointer"
             style={{
-              background: "linear-gradient(135deg, hsla(220, 45%, 45%, 0.25), hsla(25, 80%, 55%, 0.2))",
-              color: "hsl(25, 85%, 70%)",
-              boxShadow: "0 0 30px hsla(220, 45%, 45%, 0.15), 0 0 60px hsla(25, 80%, 55%, 0.1)",
-              border: "1px solid hsla(25, 80%, 55%, 0.3)",
+              background: "linear-gradient(135deg, hsla(5, 70%, 55%, 0.25), hsla(25, 80%, 55%, 0.2))",
+              color: "hsl(25, 85%, 72%)",
+              boxShadow: "0 0 30px hsla(5, 70%, 55%, 0.2), 0 0 60px hsla(25, 80%, 55%, 0.1)",
+              border: "1px solid hsla(5, 70%, 55%, 0.3)",
             }}
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.6 }}
           >
-            I'd love to
+            Of course 💞
           </motion.button>
         </motion.div>
       </div>
