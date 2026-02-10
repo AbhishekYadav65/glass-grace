@@ -3,17 +3,17 @@ import AmbientBackground from "./AmbientBackground";
 import FloatingParticles from "./FloatingParticles";
 
 const promises = [
-  "I listen before reacting.",
-  "I take your emotions seriously.",
-  "I won't rush what deserves patience.",
-  "I protect softness — I don't exploit it.",
+  "I listen.",
+  "I respect your feelings.",
+  "I protect what's soft.",
+  "I care in quiet ways.",
 ];
 
 const GentlemanPromise = () => {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 overflow-hidden">
       <AmbientBackground variant="default" />
-      <FloatingParticles color="gold" count={12} />
+      <FloatingParticles color="warm" count={12} />
 
       <motion.h2
         initial={{ opacity: 0, y: 10 }}
@@ -21,7 +21,7 @@ const GentlemanPromise = () => {
         transition={{ duration: 1.2, delay: 0.3 }}
         className="handwritten text-3xl md:text-5xl text-foreground mb-12 md:mb-16 relative z-10"
       >
-        The way I show up...
+        The way I care about you
       </motion.h2>
 
       <div className="relative z-10 max-w-2xl w-full space-y-8">
@@ -41,7 +41,7 @@ const GentlemanPromise = () => {
               {promise}
             </p>
             
-            {/* Glowing underline */}
+            {/* Glowing underline - warm red/orange */}
             <motion.div
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}

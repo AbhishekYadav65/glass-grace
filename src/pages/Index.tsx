@@ -8,12 +8,12 @@ import TheQuestion from "@/components/valentine/TheQuestion";
 import AfterYes from "@/components/valentine/AfterYes";
 
 const tabs = [
-  { id: 0, label: "Start" },
-  { id: 1, label: "Why You" },
-  { id: 2, label: "How I Feel" },
-  { id: 3, label: "My Promise" },
-  { id: 4, label: "A Question" },
-  { id: 5, label: "♡" },
+  { id: 0, label: "💖" },
+  { id: 1, label: "You" },
+  { id: 2, label: "Feelings" },
+  { id: 3, label: "I Care" },
+  { id: 4, label: "Question" },
+  { id: 5, label: "💞" },
 ];
 
 const Index = () => {
@@ -45,7 +45,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background relative">
-      {/* Tab navigation - hidden on opening */}
       <AnimatePresence>
         {showTabs && (
           <motion.nav
@@ -73,7 +72,6 @@ const Index = () => {
         )}
       </AnimatePresence>
 
-      {/* Tab content with gentle fade */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTab}
